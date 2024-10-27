@@ -68,4 +68,4 @@ Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('signup',[LoginController::class,'signup'])->name('signup');
 Route::get('register',[LoginController::class,'register'])->name('register');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
-
+Route::post('signin',[LoginController::class,'signin'])->name('signin');

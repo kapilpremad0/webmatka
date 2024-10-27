@@ -66,43 +66,47 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-<script>
-    
-    $(document).ready(function() {
-        $('#submitFrom').on('submit', function(e) {
-            e.preventDefault(); // Prevent the default form submission
-            var $form = $('#submitFrom');
-            var url = $form.attr('action');
-            var formData = new FormData($form[0]);
-            $('.validation-class').html('');
-            $.ajax({
-                url: url,
-                type: 'POST',
-                data: formData,
-                processData: false,
-                contentType: false,
-                beforeSend: function() {
-                    $('.spinner-loader').css('display', 'block');
-                },
-                success: function(res) {
-                    // location.reload();
-                    window.location.href = res;
-                },
-                error: function(res) {
-                    if (res.status == 400 || res.status == 422) {
-                        if (res.responseJSON && res.responseJSON.errors) {
-                            var error = res.responseJSON.errors
-                            $.each(error, function(key, value) {
-                                $("#" + key + "-submit_errors").text(value[0]);
-                            });
+@push('script')
+
+    <script>
+        
+        $(document).ready(function() {
+            $('#submitFrom').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+                var $form = $('#submitFrom');
+                var url = $form.attr('action');
+                var formData = new FormData($form[0]);
+                $('.validation-class').html('');
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function() {
+                        $('.spinner-loader').css('display', 'block');
+                    },
+                    success: function(res) {
+                        // location.reload();
+                        window.location.href = res;
+                    },
+                    error: function(res) {
+                        if (res.status == 400 || res.status == 422) {
+                            if (res.responseJSON && res.responseJSON.errors) {
+                                var error = res.responseJSON.errors
+                                $.each(error, function(key, value) {
+                                    $("#" + key + "-submit_errors").text(value[0]);
+                                });
+                            }
                         }
                     }
-                }
+                });
             });
         });
-    });
-</script>
+    </script>
+
+@endpush
 
 @endsection

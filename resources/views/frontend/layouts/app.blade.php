@@ -59,7 +59,13 @@
             </div>
 
             <div class="sidebar-header">
-                <span class="Uname">Hello User</span>
+                <span class="Uname">
+                @auth
+                    {{ auth()->user()->name }} 
+                @else
+                    UNKNOWN USER
+                @endauth
+                </span>
                 <span class="Umobile">Welcome Back</span>
             </div>
 
@@ -78,12 +84,20 @@
             </ul>
 
             <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="login9db6.html" class="download">My Profile</a>
-                </li>
-                <li>
-                    <a href="login.html" class="article">Logout</a>
-                </li>
+
+                @auth
+                    <li>
+                        <a href="login9db6.html" class="download">My Profile</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('logout') }}" class="article">Logout</a>
+                    </li>
+                @else
+                    <li>
+                        <a href="{{ route('login') }}" class="article">Login</a>
+                    </li>
+                @endauth
+                
             </ul>
         </nav>
 
@@ -98,9 +112,16 @@
                     </button>
         
                     <span style="font-weight:700;color:white;">TM Matka</span>
-                    <a href="{{ route('login') }}" class="btn btn-white d-inline-block ml-auto" type="button">
-                        <i class="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span>
-                    </a>
+                    @auth
+                        <a href="#" class="btn btn-white d-inline-block ml-auto" type="button">
+                            <i class="fa fa-inr"></i>&nbsp;&nbsp;<span>0.00</span>
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-white d-inline-block ml-auto" type="button">
+                            <i class="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span>
+                        </a>
+                    @endauth
+                    
         
                 </div>
             </nav>
@@ -172,7 +193,7 @@
 
     {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 
-    {{-- <script src="{{ url('public/frontend/assets/js/jquery-3.3.1.slim.min.js') }}"></script> --}}
+    <script src="{{ url('public/frontend/assets/js/jquery-3.3.1.slim.min.js') }}"></script>
 
     <!-- Popper.JS -->
     <script src="{{ url('public/frontend/assets/js/popper.min.js') }}"></script>
@@ -263,13 +284,13 @@
 
     <div class="wts-flt-btn">
 
-        <a href="https://wa.me/380947128735?text=I%20have%20Some%20query%20Regarding%20TMMatka%20WebApp"><i
-                class="fa fa-whatsapp"></i>
+        {{-- <a href="https://wa.me/380947128735?text=I%20have%20Some%20query%20Regarding%20TMMatka%20WebApp"><i
+                class="fa fa-whatsapp"></i> --}}
 
     </div>
 
 
-    @include('frontend.layouts.js');
+    @include('frontend.layouts.js')
 
     
 
