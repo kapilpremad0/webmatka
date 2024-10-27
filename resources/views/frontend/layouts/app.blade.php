@@ -113,8 +113,8 @@
         
                     <span style="font-weight:700;color:white;">TM Matka</span>
                     @auth
-                        <a href="#" class="btn btn-white d-inline-block ml-auto" type="button">
-                            <i class="fa fa-inr"></i>&nbsp;&nbsp;<span>0.00</span>
+                        <a href="{{ route('add_fund') }}" class="btn btn-white d-inline-block ml-auto" type="button">
+                            <i class="fa fa-inr"></i>&nbsp;&nbsp;<span>{{ $walletAmount ?? '0.00' }}</span>
                         </a>
                     @else
                         <a href="{{ route('login') }}" class="btn btn-white d-inline-block ml-auto" type="button">

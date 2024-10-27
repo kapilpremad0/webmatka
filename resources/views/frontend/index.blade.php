@@ -7,7 +7,7 @@
         <div class="tb-10">
             <div class="row">
                 <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                    <a href="add-fund.html" class="home-sl2-box"> <i class="fa fa-money"></i> <br> <span>Add
+                    <a href="{{ route('add_fund') }}" class="home-sl2-box"> <i class="fa fa-money"></i> <br> <span>Add
                             Fund</span></a>
                 </div>
                 <div class="col-3" style="padding-left:5px;padding-right:5px;">

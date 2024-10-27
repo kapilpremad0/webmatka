@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Frontend\AddFundController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\LoginController;
 use Illuminate\Support\Facades\Artisan;
@@ -59,13 +60,25 @@ Route::get('/optimize-clear', function () {
 Route::get('change_password/{id}',[Controller::class,'changePassword'])->name('change_password');
 Route::post('changePassword',[Controller::class,'StorechangePassword'])->name('storechangePassword');
 
-Route::get('play',function(){
-    return view('frontend.game.play');
-})->name('play');
 
+
+
+Route::group(['middleware' => 'auth' ], function (){
+    
+    Route::get('play',function(){
+        return view('frontend.game.play');
+    })->name('play');
+
+    Route::get('add-fund',[AddFundController::class,'index'])->name('add_fund');
+    Route::get('add-fund/scan-and-submit',[AddFundController::class,'scanAndSubmit'])->name('add_fund_scan_and_submit');
+    Route::post('submit_payment_screenshot',[AddFundController::class,'submitPaymentScreenshot'])->name('submit_payment_screenshot');
+
+});
 
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::post('signup',[LoginController::class,'signup'])->name('signup');
 Route::get('register',[LoginController::class,'register'])->name('register');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
 Route::post('signin',[LoginController::class,'signin'])->name('signin');
+
+
