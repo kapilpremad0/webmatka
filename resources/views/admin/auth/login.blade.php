@@ -9,7 +9,7 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Login Page - A1-Matka</title>
+    <title>Login Page - Kalyan Boss 777</title>
 
     <link rel="shortcut icon" type="image/x-icon" href="{{ url('frontend/img/footerlogo.png')}}">
 
@@ -91,7 +91,7 @@
                                     @endforeach
                                 @endif
 
-                                <h4 class="card-title mb-1">Welcome to Kalyan Bazar! 👋</h4>
+                                <h4 class="card-title mb-1">Welcome to Kalyan Boss 777! 👋</h4>
                                 <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
                                 <form class="auth-login-form mt-2" action="{{ route('admin.check_login') }}" method="POST">

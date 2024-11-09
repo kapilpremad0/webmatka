@@ -11,12 +11,12 @@
                             Fund</span></a>
                 </div>
                 <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                    <a href="withdraw.html" class="home-sl2-box"> <i class="fa fa-credit-card"></i> <br>
+                    <a href="#" class="home-sl2-box"> <i class="fa fa-credit-card"></i> <br>
                         <span>Withdraw</span></a>
                 </div>
 
                 <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                    <a href="support.html" class="home-sl2-box"><i class="fa fa-comments"></i> <br>
+                    <a href="#" class="home-sl2-box"><i class="fa fa-comments"></i> <br>
                         <span>Support</span></a>
                 </div>
 
@@ -31,8 +31,7 @@
 
 
     <div id="scroll-container" class="noticebr">
-        <div id="scroll-text" style="white-space: nowrap;">PLEASE DOWNLOAD ANDROID APPLICATION FOR FAST
-            DEPOSIT AND FAST WITHDRAWAL (24x7)</div>
+        <div id="scroll-text" style="white-space: nowrap;">{{ $marque }}</div>
     </div>
 
     <div class="container text-center">
@@ -51,7 +50,7 @@
                     </div>
                 </div>
                 <div class="col-3">
-                    <a href="starline-play.html" class="game-play"> <i class="fa fa-play-circle"
+                    <a href="#" class="game-play"> <i class="fa fa-play-circle"
                             style="color: white;"></i><br>Play Starline</a>
                 </div>
 
@@ -70,7 +69,7 @@
                         <div class="game-list-box">
                             <span class="gameName"> {{ $item->name }} </span>
                             <p class="gameon">Betting is Running Now</p>
-                            <span class="gameResult">***-**-***</span>
+                            <span class="gameResult">{{ $item->game_value ?? '' }}</span>
                         </div>
                     </div>
                     <div class="col-3">

@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <title> KALYAN BAZAR | ONLINE MATKA PLAY APP </title>
+    <title> Kalyan Boss 777 | ONLINE MATKA PLAY APP </title>
     <meta name="title" content="TM Matka | PLAY ONLINE MATKA | SATTA MATKA PLAY">
     <meta name="description"
         content="TM Matka App Experience with new Online Matka Play App website and TM Matka in Satta Matka Play online matka Industry 2024 with TM Matka.">
@@ -129,7 +129,7 @@
                         <span>&nbsp</span>
                     </button>
 
-                    <span style="font-weight:700;color:white;">Kalyan Bazar</span>
+                    <span style="font-weight:700;color:white;">Kalyan Boss 777</span>
                     @auth
                         <a href="{{ route('add_fund') }}" class="btn btn-white d-inline-block ml-auto" type="button">
                             <i class="fa fa-inr"></i>&nbsp;&nbsp;<span>{{ $walletAmount ?? '0.00' }}</span>
