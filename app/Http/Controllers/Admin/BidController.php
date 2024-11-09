@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\BidResource;
 use App\Models\Bid;
+use App\Models\DeclareResult;
 use App\Models\Game;
 use App\Models\User;
+use App\Models\Wallet;
+use App\Models\Winner;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -108,5 +111,24 @@ class BidController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+
+    function rebert (Request $request){
+        Bid::whereDate('created_at',$request->date)->where('game_id',$request->game_id)->delete();
+        $open_result = DeclareResult::whereDate('date',$request->date)->where('game_id',$request->game_id)->where('session','open')->first();
+        
+        if($open_result){
+            $open_result->delete();
+            Winner::where('declare_id', $open_result->id)->delete();
+            Wallet::where('declare_id', $open_result->id)->delete();        
+        }
+        $close_result = DeclareResult::whereDate('date',$request->date)->where('game_id',$request->game_id)->where('session','close')->first();
+        if($close_result){
+            $close_result->delete();
+            Winner::where('declare_id', $close_result->id)->delete();
+            Wallet::where('declare_id', $close_result->id)->delete();        
+        }
+        return redirect()->back()->with('success','Bid Revert successfully');
     }
 }

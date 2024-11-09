@@ -28,7 +28,46 @@
                     </div>
                 </div>
                 <div class="col-md-3" style="text-align: end">
-                    {{-- <a href="{{ route('admin.bids.create') }}" class=" btn btn-primary btn-gradient round  ">Create</a> --}}
+                    <a href="#" class=" btn btn-success btn-gradient round  " data-bs-toggle="modal" data-bs-target="#bid_revert">Bid Revert</a>
+
+                    <div class="modal fade modal-danger text-start" id="bid_revert" tabindex="-1" aria-labelledby="myModalLabel120" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel120">Bid Revert</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form action="{{ route('admin.bids.rebert') }}" method="POST">
+                                        @csrf
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label for="">Game</label>
+                                                    <select name="game_id" id="" class="form-select select2" required>
+                                                        @foreach ($games as $item)
+                                                            <option value="{{ $item->id }}" >{{ $item->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="col-md-12">
+                                                    <label for="">Date</label>
+                                                    <input type="date" name="date" class="form-control" max="{{ date('Y-m-d') }}" required>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-danger">Revert</button>
+                                        </div>
+                                    </form>
+                                    
+                                </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
             <div class="content-body">
@@ -92,7 +131,7 @@
                                             <th scope="col" >Game</th>
                                             <th scope="col" >Bid Number</th>
                                             <th scope="col" >Bid Amount</th>
-                                            <th scope="col" >Type</th>
+                                            {{-- <th scope="col" >Type</th> --}}
                                             <th>Created at</th>
                                         </tr>
                                     </thead>
@@ -113,10 +152,12 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>{{ $item->game->name ?? ''}}</td>
-                                                <td>{{ $item->number ?? ''}}</td>
+                                                <td><strong>{{ $item->game->name ?? ''}}</strong> <br> <span class="uppercase">{{ $item->session }} | {{ $item->type }}</span> </td>
+                                                <td>{{ $item->number ?? ''}} @if (!empty($item->number_2))
+                                                    - {{ $item->number_2 }}    
+                                                @endif</td>
                                                 <td><strong>₹{{ $item->amount ?? 0 }}</strong></td>
-                                                <td class="uppercase">{{ $item->type ?? ''}}</td>
+                                                {{-- <td class="uppercase">{{ $item->type ?? ''}}</td> --}}
                                                 <td>{{ $item->created_at ?? '' }}</td>
                                             </tr>
                                             @php

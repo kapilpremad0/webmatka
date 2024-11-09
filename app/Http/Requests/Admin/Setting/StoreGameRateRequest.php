@@ -21,10 +21,19 @@ class StoreGameRateRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'haruf_winning_amount' => 'required|numeric|min:1',
-            'crossing_winning_amount' => 'required|numeric|min:1',
-            'jodi_winning_amount' => 'required|numeric|min:1'
-        ];
+        // return [
+        //     'haruf_winning_amount' => 'required|numeric|min:1',
+        //     'crossing_winning_amount' => 'required|numeric|min:1',
+        //     'jodi_winning_amount' => 'required|numeric|min:1'
+        // ];
+
+        $date = [];
+        foreach(config('constant.game_type') as $key => $val){
+            $date[$key] = 'required|numeric|min:1';
+        }
+
+        return $date;
+
+
     }
 }

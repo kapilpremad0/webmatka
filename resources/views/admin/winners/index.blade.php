@@ -93,7 +93,7 @@
                                             <th scope="col" >Game</th>
                                             <th scope="col" >Bid Number</th>
                                             <th scope="col" >Bid Amount</th>
-                                            <th scope="col" >Type</th>
+                                            {{-- <th scope="col" >Type</th> --}}
                                             <th scope="col" >Winning Amount</th>
                                             <th>Created at</th>
                                         </tr>
@@ -115,10 +115,19 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>{{ $item->game->name ?? ''}}</td>
-                                                <td>{{ $item->bid->number ?? ''}}</td>
+                                                <td>
+                                                    <strong>{{ $item->game->name ?? ''}}</strong> 
+                                                    <br>
+                                                    <span class="uppercase">{{ $item->bid->session }} | {{ $item->bid->type }}</span>
+                                                </td>
+
+                                                <td>{{ $item->bid->number ?? ''}}
+                                                    @if (!empty($item->bid->number_2))
+                                                        - {{ $item->bid->number_2 }}    
+                                                    @endif
+                                                </td>
                                                 <td>₹{{ $item->bid->amount ?? 0 }}</td>
-                                                <td class="uppercase">{{ $item->bid->type ?? ''}}</td>
+                                                {{-- <td class="uppercase">{{ $item->bid->type ?? ''}}</td> --}}
                                                 <td><strong>₹{{ $item->amount ?? 0 }}</strong></td>
                                                 <td>{{ $item->created_at ?? '' }}</td>
                                             </tr>

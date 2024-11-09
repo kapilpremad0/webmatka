@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\LoginRequest;
 use App\Http\Requests\Frontend\RegisterRequest;
+use App\Http\Requests\Frontend\StoreBankDetailRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,21 @@ class LoginController extends Controller
     function logout (){
         Auth::logout();
         return redirect()->route('login')->with('success','Logout Successfully');
+    }
+
+    function profile(){
+        return view('frontend.profile.index');
+    }
+
+
+    function bankDetail(){
+        return view('frontend.profile.bank_detail');
+    }
+
+
+    function submitBankDetail(StoreBankDetailRequest $request){
+        User::where('id',auth()->user()->id)->update($request->validated());
+        session()->flash('success','Bank Detail Update Successfully');
     }
 
 

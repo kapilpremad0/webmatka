@@ -14,7 +14,9 @@ class Bid extends Model
         'user_id',
         'amount',
         'number',
-        'type'
+        'type',
+        'number_2',
+        'session'
     ];
 
 
@@ -32,6 +34,14 @@ class Bid extends Model
     {
         return $this->belongsTo(Winner::class, 'id', 'bid_id');
     }
+
+    static $single_ank = 'single_ank';
+    static $jodi = 'jodi';
+    static $single_patti = 'single_patti';
+    static $double_patti = 'double_patti';
+    static $triple_patti = 'triple_patti';
+    static $half_sangam = 'half_sangam';
+    static $full_sangam = 'full_sangam';
 
 
 }

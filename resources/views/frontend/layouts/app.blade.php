@@ -12,14 +12,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <style>
-        .text-danger{
-            color:#b73800
+        .text-danger {
+            color: #b73800
         }
     </style>
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <title> WEb MATKA Matka | ONLINE MATKA PLAY APP </title>
+    <title> KALYAN BAZAR | ONLINE MATKA PLAY APP </title>
     <meta name="title" content="TM Matka | PLAY ONLINE MATKA | SATTA MATKA PLAY">
     <meta name="description"
         content="TM Matka App Experience with new Online Matka Play App website and TM Matka in Satta Matka Play online matka Industry 2024 with TM Matka.">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="{{ url('public/frontend/assets/css/font-awesome.min.css') }}">
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ url('public/frontend/assets/icons/196.png') }}">
+    {{-- <link rel="icon" type="image/png" sizes="192x192" href="{{ url('public/frontend/assets/icons/196.png') }}"> --}}
     <link rel="manifest" href="manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="{{ url('public/frontend/assets/icons/ms-icon-144x144.png') }}">
@@ -45,6 +45,24 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="OnlineMatkaPlay">
 
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 
 </head>
 
@@ -60,34 +78,34 @@
 
             <div class="sidebar-header">
                 <span class="Uname">
-                @auth
-                    {{ auth()->user()->name }} 
-                @else
-                    UNKNOWN USER
-                @endauth
+                    @auth
+                        {{ auth()->user()->name }}
+                    @else
+                        UNKNOWN USER
+                    @endauth
                 </span>
                 <span class="Umobile">Welcome Back</span>
             </div>
 
             <ul class="list-unstyled components sideMenu">
                 <li><a href="{{ route('home') }}"> <i class="fa fa-home"></i> <span>Home</span></a></li>
-                <li><a href="login1f66.html"> <i class="fa fa-list-alt"></i> <span>Transaction History</span></a></li>
-                <li><a href="login4375.html"> <i class="fa fa-list"></i> <span>Bidding History</span></a></li>
-                <li><a href="login251b.html"> <i class="fa fa-list"></i> <span>Starline Bid History</span></a></li>
-                <li><a href="login84d6.html"> <i class="fa fa-money"></i> <span>Fund History</span></a></li>
-                <li><a href="loginbdd2.html"> <i class="fa fa-bell"></i> <span>Notifications</span></a></li>
-                <li><a href="top-winner-list.html"> <i class="fa fa-trophy"></i> <span>Top Winners</span></a></li>
-                <li><a href="top-winner-list-starline.html"> <i class="fa fa-trophy"></i> <span>Starline
-                            Winners</span></a></li>
-                <li><a href="game-rates.html"> <i class="fa fa-tasks"></i> <span>Game Rates</span></a></li>
-                <li><a href="download-app.html"> <i class="fa fa-mobile"></i> <span>Download App</span></a></li>
+                <li><a href="{{ route('transaction_history') }}"> <i class="fa fa-list-alt"></i> <span>Transaction History</span></a></li>
+                <li><a href="{{ route('bid_history') }}"> <i class="fa fa-list"></i> <span>Bidding History</span></a></li>
+                <li><a href="{{ route('winning_history') }}"> <i class="fa fa-list"></i> <span>Winning History</span></a></li>
+                <li><a href="#"> <i class="fa fa-list"></i> <span>Starline Bid History</span></a></li>
+                <li><a href="{{ route('fund_history') }}"> <i class="fa fa-money"></i> <span>Fund History</span></a></li>
+                {{-- <li><a href="loginbdd2.html"> <i class="fa fa-bell"></i> <span>Notifications</span></a></li> --}}
+                <li><a href="{{ route('top_winners') }}"> <i class="fa fa-trophy"></i> <span>Top Winners</span></a></li>
+                <li><a href="#"> <i class="fa fa-trophy"></i> <span>Starline Winners</span></a></li>
+                <li><a href="{{ route('game_rates') }}"> <i class="fa fa-tasks"></i> <span>Game Rates</span></a></li>
+                {{-- <li><a href="#"> <i class="fa fa-mobile"></i> <span>Download App</span></a></li> --}}
             </ul>
 
             <ul class="list-unstyled CTAs">
 
                 @auth
                     <li>
-                        <a href="login9db6.html" class="download">My Profile</a>
+                        <a href="{{ route('my_profile') }}" class="download">My Profile</a>
                     </li>
                     <li>
                         <a href="{{ route('logout') }}" class="article">Logout</a>
@@ -97,7 +115,7 @@
                         <a href="{{ route('login') }}" class="article">Login</a>
                     </li>
                 @endauth
-                
+
             </ul>
         </nav>
 
@@ -105,13 +123,13 @@
 
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-        
+
                     <button type="button" id="sidebarCollapse" class="btn menu-btn" title="Menu">
-                        <i class="fa fa-align-left" ></i>
+                        <i class="fa fa-align-left"></i>
                         <span>&nbsp</span>
                     </button>
-        
-                    <span style="font-weight:700;color:white;">TM Matka</span>
+
+                    <span style="font-weight:700;color:white;">Kalyan Bazar</span>
                     @auth
                         <a href="{{ route('add_fund') }}" class="btn btn-white d-inline-block ml-auto" type="button">
                             <i class="fa fa-inr"></i>&nbsp;&nbsp;<span>{{ $walletAmount ?? '0.00' }}</span>
@@ -121,16 +139,17 @@
                             <i class="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span>
                         </a>
                     @endauth
-                    
-        
+
+
                 </div>
             </nav>
 
             @yield('content')
 
+            <br><br><br>
         </div>
 
-        
+
     </div>
 
     <div class="modal" id="noticeboard">
@@ -146,7 +165,8 @@
                 <!-- Modal body -->
                 <div class="modal-body">
                     <div style="display: flex; align-items: center;">
-                        <img src="{{ url('public/frontend/assets/img/app-home.webp')}}" style="width: 150px; height: auto; margin-right: 10px;">
+                        <img src="{{ url('public/frontend/assets/img/app-home.webp') }}"
+                            style="width: 150px; height: auto; margin-right: 10px;">
                         <div>
                             <p style="font-size: 18px; font-weight: bold; margin-bottom: 5px;">DOWNLOAD OUR APP</p>
 
@@ -175,10 +195,10 @@
 
     <div id="footer-bar" class="footer-bar-1">
         <a href="{{ route('home') }}" class="active-nav"><i class="fa fa-home"></i><span>Home</span></a>
-        <a href="my-history.html"><i class="fa fa-list"></i><span>History</span></a>
-        <a href="login9db6.html"><i class="fa fa-user"></i><span>Profile</span></a>
-        <a href="login1f66.html"><i class="fa fa-list-alt"></i><span>Passbook</span></a>
-        <a href="login4375.html"><i class="fa fa-history"></i><span>My Bids</span></a>
+        <a href="{{ route('my_history') }}"><i class="fa fa-list"></i><span>History</span></a>
+        <a href="{{ route('my_profile') }}"><i class="fa fa-user"></i><span>Profile</span></a>
+        <a href="{{ route('transaction_history') }}"><i class="fa fa-list-alt"></i><span>Passbook</span></a>
+        <a href="{{ route('bid_history') }}"><i class="fa fa-history"></i><span>My Bids</span></a>
     </div>
 
     {{-- <div class="overlay"></div>
@@ -292,7 +312,7 @@
 
     @include('frontend.layouts.js')
 
-    
+
 
 </body>
 

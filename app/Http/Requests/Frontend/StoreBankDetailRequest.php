@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\Setting;
+namespace App\Http\Requests\Frontend;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePaymentRequest extends FormRequest
+class StoreBankDetailRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,10 @@ class StorePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'upi_id' => 'required',
-            'whatsaap_no' => 'required|digits:10|numeric',
-            'qr_code' => 'nullable|mimes:png,jpg,jpeg'
+            'account_holder_name' => 'required',
+            'account_number' => 'required|numeric',
+            'ifsc' => 'required',
+            'bank_name' => 'required'
         ];
     }
 }

@@ -44,27 +44,34 @@
                                     {{ csrf_field() }}
 
                                     <table  class="table mb-5">
-                                        <tr>
-                                            <td style="width: 50%">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Jodi Betting Amount<span class="error"></span></label>
-                                                    <br>
-                                                    <span>₹1</span>
-                                                </div>
-                                            </td>
 
-                                            <td style="width: 50%">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Jodi Winning Amount <span class="error"></span></label>
-                                                    <input type="number" id="first-name-column" name="jodi_winning_amount" class="form-control" placeholder="Jodi Winning Amount"  value="{{ $game_rates['jodi_winning_amount'] ?? 0 }}" />
-                                                    <span class="error text-danger validation-class" id="jodi_winning_amount-price_rate_error"></span>
-                                                    @error('jodi_winning_amount')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                </div>
-                                            </td>
 
-                                        </tr>
+                                        @foreach (config('constant.game_type') as $key => $val)
+                                            <tr>
+                                                <td style="width: 50%">
+                                                    <div class="mb-1">
+                                                        <label class="form-label" for="first-name-column">{{ $val }} Betting Amount<span class="error"></span></label>
+                                                        <br>
+                                                        <span>₹1</span>
+                                                    </div>
+                                                </td>
 
-                                        <tr>
+                                                <td style="width: 50%">
+                                                    <div class="mb-1">
+                                                        <label class="form-label" for="first-name-column">{{ $val }} Winning Amount <span class="error"></span></label>
+                                                        <input type="number" id="first-name-column" name="{{ $key }}" class="form-control" placeholder="Jodi Winning Amount"  value="{{ $game_rates[$key] ?? 0 }}" />
+                                                        <span class="error text-danger validation-class" id="{{ $key }}-price_rate_error"></span>
+                                                        @error($key)<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    </div>
+                                                </td>
+
+                                            </tr>    
+                                        @endforeach
+
+
+                                        
+
+                                        {{-- <tr>
                                             <td>
                                                 <div class="mb-1">
                                                     <label class="form-label" for="first-name-column">Crossing Betting Amount<span class="error"></span></label>
@@ -102,7 +109,8 @@
                                                 </div>
                                             </td>
 
-                                        </tr>
+                                        </tr> --}}
+
                                     </table>
                                     
                                         <div class="row">
@@ -238,16 +246,77 @@
                                     
                                         <div class="row">
 
-                                            <div class="col-md-6 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">UPI ID<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="upi_id" class="form-control" placeholder="UPI ID"  value="{{ $payments['upi_id'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="upi_id-payment_error"></span>
+                                            
+                                                <div class="col-md-4 col-12">
+                                                    <div class="mb-1">
+                                                        <label class="form-label" for="first-name-column">Phone Pay UPI ID<span class="error"></span></label>
+                                                        <input type="text" id="first-name-column" name="phone_pay_upi_id" class="form-control" placeholder="UPI ID"  value="{{ $payments['phone_pay_upi_id'] ?? '' }}" />
+                                                        <span class="error text-danger validation-class" id="phone_pay_upi_id-payment_error"></span>
+                                                    </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="col-md-6 col-12">
+                                                <div class="col-md-2 col-12">
+                                                    <div class="mb-1">
+                                                        <div class="d-flex flex-column">
+                                                            <label class="form-check-label mb-50" for="customSwitch3">Phone Pay</label>
+                                                            <div class="form-check form-check-primary form-switch">
+                                                                <input type="checkbox" name="phone_pay_upi_status" value="1" @if ($payments['phone_pay_upi_status'] == 1)
+                                                                    checked
+                                                                @endif class="form-check-input" id="customSwitch3" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 col-12">
+                                                    <div class="mb-1">
+                                                        <label class="form-label" for="first-name-column">Google Pay UPI ID<span class="error"></span></label>
+                                                        <input type="text" id="first-name-column" name="google_pay_upi_id" class="form-control" placeholder="UPI ID"  value="{{ $payments['google_pay_upi_id'] ?? '' }}" />
+                                                        @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                        <span class="error text-danger validation-class" id="google_pay_upi_id-payment_error"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2 col-12">
+                                                    <div class="mb-1">
+                                                        <div class="d-flex flex-column">
+                                                            <label class="form-check-label mb-50" for="customSwitch3">Google Pay</label>
+                                                            <div class="form-check form-check-primary form-switch">
+                                                                <input type="checkbox" name="google_pay_upi_status" value="1" @if ($payments['google_pay_upi_status'] == 1)
+                                                                    checked
+                                                                @endif class="form-check-input" id="customSwitch3" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 col-12">
+                                                    <div class="mb-1">
+                                                        <label class="form-label" for="first-name-column">Paytm UPI ID<span class="error"></span></label>
+                                                        <input type="text" id="first-name-column" name="paytm_upi_id" class="form-control" placeholder="UPI ID"  value="{{ $payments['paytm_upi_id'] ?? '' }}" />
+                                                        @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                        <span class="error text-danger validation-class" id="paytm_upi_id-payment_error"></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-2 col-12">
+                                                    <div class="mb-1">
+                                                        <div class="d-flex flex-column">
+                                                            <label class="form-check-label mb-50" for="customSwitch3">Paytm</label>
+                                                            <div class="form-check form-check-primary form-switch">
+                                                                <input type="checkbox" name="paytm_upi_status" value="1" @if ($payments['paytm_upi_status'] == 1)
+                                                                    checked
+                                                                @endif class="form-check-input" id="customSwitch3" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            
+
+
+
+                                            <div class="col-md-4 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="first-name-column">OR Code<span class="error"></span></label>
                                                     <div>
@@ -256,6 +325,19 @@
                                                     <input type="file" id="first-name-column" name="qr_code" class="form-control" placeholder="UPI ID"  value="{{ old('name') }}" />
                                                     @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
                                                     <span class="error text-danger validation-class" id="qr_code-payment_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-2 col-12">
+                                                <div class="mb-1">
+                                                    <div class="d-flex flex-column">
+                                                        <label class="form-check-label mb-50" for="customSwitch3">Qr Code</label>
+                                                        <div class="form-check form-check-primary form-switch">
+                                                            <input type="checkbox" name="qr_code_status" value="1" @if ($payments['qr_code_status'] == 1)
+                                                                checked
+                                                            @endif class="form-check-input" id="customSwitch3" />
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
 

@@ -91,7 +91,7 @@
                                     @endforeach
                                 @endif
 
-                                <h4 class="card-title mb-1">Welcome to A1-Matka! 👋</h4>
+                                <h4 class="card-title mb-1">Welcome to Kalyan Bazar! 👋</h4>
                                 <p class="card-text mb-2">Please sign-in to your account and start the adventure</p>
 
                                 <form class="auth-login-form mt-2" action="{{ route('admin.check_login') }}" method="POST">

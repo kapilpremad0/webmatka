@@ -44,7 +44,7 @@
 
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
     <!-- BEGIN: Content-->
-    <div class="app-content content " style="background-color: #3b8883">
+    <div class="app-content content " >
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -57,8 +57,10 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="#" class="brand-logo">
-                                    <img src="{{ url('public/frontend/img/footerlogo.png') }}" alt="" width="177">
+                                    {{-- <img src="{{ url('public/frontend/img/footerlogo.png') }}" alt="" width="177"> --}}
+                                    <h2 class="brand-text text-primary ms-1" style="color:#386fb9 !important;">Kalyan Bazar</h2>
                                 </a>
+                                
 
                                 @if ($errors->any())
                                     @foreach ($errors->all() as $error)

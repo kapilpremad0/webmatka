@@ -33,6 +33,10 @@ class User extends Authenticatable
         'referral_from',
         'password',
         'password_2',
+        'account_holder_name',
+        'ifsc',
+        'account_number',
+        'bank_name'
     ];
 
     /**

@@ -9,5 +9,5 @@ class DeclareResult extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['game_id','number','date'];
+    protected $fillable = ['game_id','number','date','session'];
 }

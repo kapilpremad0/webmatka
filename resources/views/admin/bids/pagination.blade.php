@@ -6,7 +6,7 @@
             <th scope="col" >Game</th>
             <th scope="col" >Bid Number</th>
             <th scope="col" >Bid Amount</th>
-            <th scope="col" >Type</th>
+            {{-- <th scope="col" >Type</th> --}}
             <th>Created at</th>
         </tr>
     </thead>
@@ -27,10 +27,12 @@
                         </div>
                     </div>
                 </td>
-                <td>{{ $item->game->name ?? ''}}</td>
-                <td>{{ $item->number ?? ''}}</td>
+                <td><strong>{{ $item->game->name ?? ''}}</strong> <br> <span class="uppercase">{{ $item->session }} | {{ $item->type }}</span> </td>
+                <td>{{ $item->number ?? ''}} @if (!empty($item->number_2))
+                    - {{ $item->number_2 }}    
+                @endif</td>
                 <td><strong>₹{{ $item->amount ?? 0 }}</strong></td>
-                <td class="uppercase">{{ $item->type ?? ''}}</td>
+                {{-- <td class="uppercase">{{ $item->type ?? ''}}</td> --}}
                 <td>{{ $item->created_at ?? '' }}</td>
             </tr>
             @php

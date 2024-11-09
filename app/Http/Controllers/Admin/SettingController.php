@@ -13,15 +13,31 @@ use Illuminate\Http\Request;
 class SettingController extends Controller
 {
     function index(){
-        $game_rates =[
-            'jodi_winning_amount' => Setting::where('key',Setting::$jodi_winning_amount)->first()->value ?? 0,
-            'crossing_winning_amount' => Setting::where('key',Setting::$crossing_winning_amount)->first()->value ?? 0,
-            'haruf_winning_amount' => Setting::where('key',Setting::$haruf_winning_amount)->first()->value ?? 0,
-        ];
+
+        
+
+        $game_rates = [];
+        foreach(config('constant.game_type') as $key => $val){
+            $game_key = "{$key}_winning_amount";
+            $hh = Setting::where('key',$game_key)->first()->value ?? 0;
+            $game_rates[$key] = $hh ;
+        }
+
+        
 
         $payments =[
             'qr_code' => Setting::where('key',Setting::$payment_qr_code)->first()->value ?? 0,
-            'upi_id' => Setting::where('key',Setting::$payment_upi_id)->first()->value ?? 0,
+            'qr_code_status' => Setting::where('key',Setting::$qr_code_status)->first()->value ?? 0,
+
+            'phone_pay_upi_status' => Setting::where('key',Setting::$phone_pay_upi_status)->first()->value ?? '',
+            'phone_pay_upi_id' => Setting::where('key',Setting::$phone_pay_upi_id)->first()->value ?? '',
+
+            'google_pay_upi_status' => Setting::where('key',Setting::$google_pay_upi_status)->first()->value ?? '',
+            'google_pay_upi_id' => Setting::where('key',Setting::$google_pay_upi_id)->first()->value ?? '',
+
+            'paytm_upi_status' => Setting::where('key',Setting::$paytm_upi_status)->first()->value ?? '',
+            'paytm_upi_id' => Setting::where('key',Setting::$paytm_upi_id)->first()->value ?? '',
+
             'whatsaap_no' => Setting::where('key',Setting::$payment_whatsaap_no)->first()->value ?? 0,
         ];
 
@@ -37,24 +53,19 @@ class SettingController extends Controller
             'min_withdraw_amount' => $settings->where('key',Setting::$min_withdraw_amount)->first()->value ?? 0,
             'home_banner' => $settings->where('key',Setting::$home_banner)->first()->value ?? '',
         ];
-
-        // return $general_settings;
         return view('admin.settings.index',compact('game_rates','payments','general_settings'));
     }
 
 
     function storeGameRates(StoreGameRateRequest $request){
-        Setting::updateOrCreate(['key' => Setting::$crossing_winning_amount],[
-            'value' => $request->crossing_winning_amount,
-        ]);
 
-        Setting::updateOrCreate(['key' => Setting::$haruf_winning_amount],[
-            'value' => $request->haruf_winning_amount,
-        ]);
-
-        Setting::updateOrCreate(['key' => Setting::$jodi_winning_amount],[
-            'value' => $request->jodi_winning_amount,
-        ]);
+        foreach(config('constant.game_type') as $key => $val){
+            $game_key = $key."_winning_amount";
+            Setting::updateOrCreate(['key' => $game_key],[
+                'value' => $request->$key,
+            ]);
+        }
+        
     }
 
 
@@ -63,9 +74,35 @@ class SettingController extends Controller
             'value' => $request->whatsaap_no,
         ]);
 
-        Setting::updateOrCreate(['key' => Setting::$payment_upi_id],[
-            'value' => $request->upi_id,
+        Setting::updateOrCreate(['key' => Setting::$phone_pay_upi_id],[
+            'value' => $request->phone_pay_upi_id,
         ]);
+
+        Setting::updateOrCreate(['key' => Setting::$phone_pay_upi_status],[
+            'value' => $request->phone_pay_upi_status ?? 0,
+        ]);
+
+        Setting::updateOrCreate(['key' => Setting::$google_pay_upi_id],[
+            'value' => $request->google_pay_upi_id,
+        ]);
+
+        Setting::updateOrCreate(['key' => Setting::$google_pay_upi_status],[
+            'value' => $request->google_pay_upi_status ?? 0,
+        ]);
+
+        Setting::updateOrCreate(['key' => Setting::$paytm_upi_id],[
+            'value' => $request->paytm_upi_id,
+        ]);
+
+        Setting::updateOrCreate(['key' => Setting::$paytm_upi_status],[
+            'value' => $request->paytm_upi_status ?? 0,
+        ]);
+
+        Setting::updateOrCreate(['key' => Setting::$qr_code_status],[
+            'value' => $request->qr_code_status ?? 0,
+        ]);
+
+
 
         if ($request->hasFile('qr_code')) {
             

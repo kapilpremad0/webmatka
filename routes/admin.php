@@ -43,6 +43,8 @@ use App\Http\Controllers\Controller;
             Route::get('users/transactions/{id}',[UserController::class,'transactions'])->name('users.transactions');
             Route::get('users/bids/{id}',[UserController::class,'bids'])->name('users.bids');
             Route::get('users/winners/{id}',[UserController::class,'winners'])->name('users.winners');
+
+            Route::any('bids.rebert',[BidController::class,'rebert'])->name('bids.rebert');
     });
 
 // });
