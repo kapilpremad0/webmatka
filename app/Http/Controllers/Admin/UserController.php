@@ -95,6 +95,7 @@ class UserController extends Controller
         $data = $request->validated();
         $data['password'] = Hash::make($request->password);
         $data['password_2'] = $request->password;
+        $data['is_betting'] = $request->is_betting ?? 0;
         User::where('id',$user->id)->update($data);
         return redirect()->back()->with('success','Profile updated successfully');
     }

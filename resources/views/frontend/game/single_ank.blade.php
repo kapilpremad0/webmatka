@@ -17,8 +17,8 @@
 
                     <div class="col-6">
                         <select class="dateGameIDbox" name="session">
-                            <option value="open"> MILAN DAY OPEN </option>
-                            <option value="close"> MILAN DAY CLOSE</option>
+                            <option value="open"> {{ $game->name ?? '' }} OPEN </option>
+                            <option value="close"> {{ $game->name ?? '' }} CLOSE</option>
                         </select>
                     </div>
 

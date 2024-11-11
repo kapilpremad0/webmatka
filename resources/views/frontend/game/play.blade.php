@@ -6,7 +6,7 @@
     <div class="card-full-page tb-10">
 
         <div class="text-center tb-10">
-            <h3 class="gdash3">Milan night Dashboard</h3>
+            <h3 class="gdash3">{{ $game->name }} | {{ $game->hindi_name }}</h3>
             <span>Select Bidding Option</span>
         </div>
 

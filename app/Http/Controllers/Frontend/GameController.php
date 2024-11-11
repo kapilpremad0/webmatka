@@ -3,35 +3,49 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Game;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class GameController extends Controller
 {
-    function singlePlay(){
-        return view('frontend.game.single_ank');
+
+    function play(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.play',compact('game'));
     }
 
-    function jodi(){
-        return view('frontend.game.jodi');
+    function singlePlay(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.single_ank',compact('game'));
     }
 
-    function singlePatti(){
-        return view('frontend.game.single_patti');
+    function jodi(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.jodi',compact('game'));
     }
 
-    function doublePatti(){
-        return view('frontend.game.double_patti');
+    function singlePatti(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.single_patti',compact('game'));
     }
 
-    function triplePatti(){
-        return view('frontend.game.triple_patti');
+    function doublePatti(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.double_patti',compact('game'));
     }
-    function halfSangam(){
-        return view('frontend.game.half_sangam');
+
+    function triplePatti(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.triple_patti',compact('game'));
     }
-    function fullSangam(){
-        return view('frontend.game.full_sangam');
+    function halfSangam(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.half_sangam',compact('game'));
+    }
+    function fullSangam(Request $request){
+        $game = Game::find($request->game_id);
+        return view('frontend.game.full_sangam',compact('game'));
     }
 
     function rates(){

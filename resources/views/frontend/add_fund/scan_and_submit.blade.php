@@ -1,17 +1,59 @@
 @extends('frontend.layouts.app')
 
+<style>
+    .btn-payment-upi-id{
+        color: #fff;
+        background-color: #589385;
+        margin-top: 2px;
+        /* border-color: var(--primary-light); */
+    }
+</style>
+
 @section('content')
     <div class="container">
         <div class="card tb-10">
+
+            @if ($data['qr_code_status'] == 1)
+                <div style="text-align: center">
+                    <img src="{{ url('public/upload/'.$data['qr_code']) }}" alt="" width="200px" height="200px">
+                </div>
+                
+                <div class="tb-10">
+                    <hr class="devider">
+                </div>
+                
+            @endif
+
+            @if ($data['phone_pay_upi_status'] == 1)
+                <a href="phonepe://pay?pa={{ $data['phone_pay_upi_id'] }}&pn={{ urlencode('YOUR_NAME') }}&am={{ request()->input('amount') }}&cu=INR" target="_blank" class="btn btn-payment-upi-id">
+                    Pay via PhonePe
+                </a>
+            @endif
+
+            @if ($data['paytm_upi_status'] == 1)
+                <a href="paytmmp://pay?pa={{ $data['paytm_upi_id'] }}&pn={{ urlencode('YOUR_NAME') }}&am={{ request()->input('amount') }}&cu=INR" target="_blank" class="btn btn-payment-upi-id">
+                    Pay via Paytm
+                </a>
+            @endif
+
+            @if ($data['google_pay_upi_status'] == 1)
+                <a href="upi://pay?pa={{ $data['google_pay_upi_id'] }}&pn={{ urlencode('YOUR_NAME') }}&am={{ request()->input('amount') }}&cu=INR" target="_blank" class="btn btn-payment-upi-id">
+                    Pay via Google Pay
+                </a>
+            @endif
+
+            <div class="tb-10">
+                <hr class="devider">
+            </div>
+
+
             <div class="text-center tb-10">
-                <h3>Scan and Submit Payment Screenshot</h3>
-                {{-- <span>Please scan the QR code to make the payment. Once the payment is successful, take a screenshot of the payment confirmation and upload it here for verification.</span> --}}
+                <h2 style="    font-weight: 900;    font-size: 13px;">For Add Funds Related Query br Call Or Whatsapp</h2>
+                <span>{{ $data['whatsapp_no'] ?? '' }}</span>
             </div>
 
             <div class="tbmar-20 text-center">
-                <p>Please scan the QR code to make the payment. Once the payment is successful, take a screenshot of the <br> payment confirmation and upload it here for verification.
-
-                <br>Your money is always safe with OM Games </p>
+                <p>{{ $data['text']  ?? ''}}</p>
 
             </div>
 

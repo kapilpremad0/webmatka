@@ -19,7 +19,7 @@
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    <title> Kalyan Boss 777 | ONLINE MATKA PLAY APP </title>
+    <title> {{ env('APP_NAME') }} | ONLINE MATKA PLAY APP </title>
     <meta name="title" content="TM Matka | PLAY ONLINE MATKA | SATTA MATKA PLAY">
     <meta name="description"
         content="TM Matka App Experience with new Online Matka Play App website and TM Matka in Satta Matka Play online matka Industry 2024 with TM Matka.">
@@ -89,16 +89,24 @@
 
             <ul class="list-unstyled components sideMenu">
                 <li><a href="{{ route('home') }}"> <i class="fa fa-home"></i> <span>Home</span></a></li>
-                <li><a href="{{ route('transaction_history') }}"> <i class="fa fa-list-alt"></i> <span>Transaction History</span></a></li>
-                <li><a href="{{ route('bid_history') }}"> <i class="fa fa-list"></i> <span>Bidding History</span></a></li>
-                <li><a href="{{ route('winning_history') }}"> <i class="fa fa-list"></i> <span>Winning History</span></a></li>
-                <li><a href="#"> <i class="fa fa-list"></i> <span>Starline Bid History</span></a></li>
-                <li><a href="{{ route('fund_history') }}"> <i class="fa fa-money"></i> <span>Fund History</span></a></li>
-                {{-- <li><a href="loginbdd2.html"> <i class="fa fa-bell"></i> <span>Notifications</span></a></li> --}}
-                <li><a href="{{ route('top_winners') }}"> <i class="fa fa-trophy"></i> <span>Top Winners</span></a></li>
-                <li><a href="#"> <i class="fa fa-trophy"></i> <span>Starline Winners</span></a></li>
-                <li><a href="{{ route('game_rates') }}"> <i class="fa fa-tasks"></i> <span>Game Rates</span></a></li>
-                {{-- <li><a href="#"> <i class="fa fa-mobile"></i> <span>Download App</span></a></li> --}}
+                @auth
+                    @if (auth()->user()->is_betting == 1)
+                    <li><a href="{{ route('transaction_history') }}"> <i class="fa fa-list-alt"></i> <span>Transaction History</span></a></li>
+                    <li><a href="{{ route('bid_history') }}"> <i class="fa fa-list"></i> <span>Bidding History</span></a></li>
+                    <li><a href="{{ route('winning_history') }}"> <i class="fa fa-list"></i> <span>Winning History</span></a></li>
+                    <li><a href="#"> <i class="fa fa-list"></i> <span>Starline Bid History</span></a></li>
+                    <li><a href="{{ route('fund_history') }}"> <i class="fa fa-money"></i> <span>Fund History</span></a></li>
+                    {{-- <li><a href="loginbdd2.html"> <i class="fa fa-bell"></i> <span>Notifications</span></a></li> --}}
+                    <li><a href="{{ route('top_winners') }}"> <i class="fa fa-trophy"></i> <span>Top Winners</span></a></li>
+                    <li><a href="#"> <i class="fa fa-trophy"></i> <span>Starline Winners</span></a></li>
+                    <li><a href="{{ route('game_rates') }}"> <i class="fa fa-tasks"></i> <span>Game Rates</span></a></li>
+                    {{-- <li><a href="#"> <i class="fa fa-mobile"></i> <span>Download App</span></a></li> --}}    
+                    @endif
+                @endauth
+
+                
+
+
             </ul>
 
             <ul class="list-unstyled CTAs">
@@ -129,11 +137,17 @@
                         <span>&nbsp</span>
                     </button>
 
-                    <span style="font-weight:700;color:white;">Kalyan Boss 777</span>
+                    <span style="font-weight:700;color:white;">{{ env('APP_NAME') }}</span>
                     @auth
-                        <a href="{{ route('add_fund') }}" class="btn btn-white d-inline-block ml-auto" type="button">
-                            <i class="fa fa-inr"></i>&nbsp;&nbsp;<span>{{ $walletAmount ?? '0.00' }}</span>
-                        </a>
+                        @if (auth()->user()->is_betting == 1)
+                            <a href="{{ route('add_fund') }}" class="btn btn-white d-inline-block ml-auto" type="button">
+                                <i class="fa fa-inr"></i>&nbsp;&nbsp;<span>{{ $walletAmount ?? '0.00' }}</span>
+                            </a>
+                        @else
+                            <a href="{{ route('logout') }}" class="btn btn-white d-inline-block ml-auto" type="button">
+                                Logout
+                            </a>
+                        @endif
                     @else
                         <a href="{{ route('login') }}" class="btn btn-white d-inline-block ml-auto" type="button">
                             <i class="fa fa-sign-in"></i>&nbsp;&nbsp;<span>Login</span>
@@ -194,11 +208,27 @@
 
 
     <div id="footer-bar" class="footer-bar-1">
+
         <a href="{{ route('home') }}" class="active-nav"><i class="fa fa-home"></i><span>Home</span></a>
-        <a href="{{ route('my_history') }}"><i class="fa fa-list"></i><span>History</span></a>
+
+        @auth
+            @if (auth()->user()->is_betting == 1)
+                <a href="{{ route('my_history') }}"><i class="fa fa-list"></i><span>History</span></a>        
+            @endif
+            
+        @endauth
+        
+
         <a href="{{ route('my_profile') }}"><i class="fa fa-user"></i><span>Profile</span></a>
-        <a href="{{ route('transaction_history') }}"><i class="fa fa-list-alt"></i><span>Passbook</span></a>
-        <a href="{{ route('bid_history') }}"><i class="fa fa-history"></i><span>My Bids</span></a>
+
+        @auth
+            @if (auth()->user()->is_betting == 1)
+                <a href="{{ route('transaction_history') }}"><i class="fa fa-list-alt"></i><span>Passbook</span></a>
+                <a href="{{ route('bid_history') }}"><i class="fa fa-history"></i><span>My Bids</span></a>    
+            @endif
+        @endauth
+
+        
     </div>
 
     {{-- <div class="overlay"></div>

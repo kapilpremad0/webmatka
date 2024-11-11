@@ -6,24 +6,34 @@
     <div class="container text-center">
         <div class="tb-10">
             <div class="row">
-                <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                    <a href="{{ route('add_fund') }}" class="home-sl2-box"> <i class="fa fa-money"></i> <br> <span>Add
-                            Fund</span></a>
-                </div>
-                <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                    <a href="#" class="home-sl2-box"> <i class="fa fa-credit-card"></i> <br>
-                        <span>Withdraw</span></a>
-                </div>
 
-                <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                    <a href="#" class="home-sl2-box"><i class="fa fa-comments"></i> <br>
-                        <span>Support</span></a>
-                </div>
+                @auth
+                    @if (auth()->user()->is_betting == 1)
 
-                <div class="col-3" style="padding-left:5px;padding-right:5px;">
-                    <a href="#" class="home-sl2-box"><i class="fa fa-info-circle"></i> <br> <span>How
-                            ?</span></a>
-                </div>
+                    <div class="col-3" style="padding-left:5px;padding-right:5px;">
+                        <a href="{{ route('add_fund') }}" class="home-sl2-box"> <i class="fa fa-money"></i> <br> <span>Add
+                                Fund</span></a>
+                    </div>
+                    
+                    <div class="col-3" style="padding-left:5px;padding-right:5px;">
+                        <a href="#" class="home-sl2-box"> <i class="fa fa-credit-card"></i> <br>
+                            <span>Withdraw</span></a>
+                    </div>
+
+                    <div class="col-3" style="padding-left:5px;padding-right:5px;">
+                        <a href="#" class="home-sl2-box"><i class="fa fa-comments"></i> <br>
+                            <span>Support</span></a>
+                    </div>
+    
+                    <div class="col-3" style="padding-left:5px;padding-right:5px;">
+                        <a href="#" class="home-sl2-box"><i class="fa fa-info-circle"></i> <br> <span>How
+                                ?</span></a>
+                    </div>
+
+                    @endif
+                @endauth
+
+                
 
             </div>
         </div>
@@ -73,8 +83,40 @@
                         </div>
                     </div>
                     <div class="col-3">
-                        <a href="{{ route('play',['game_id' => $item->id]) }}" class="game-play"> <i
-                                class="fa fa-play-circle"></i><br>Play Game</a>
+
+                        {{-- <a href="{{ route('play',['game_id' => $item->id]) }}" class="game-play"> <i
+                                class="fa fa-play-circle"></i><br>Play Game</a> --}}
+
+
+                        
+                                @auth
+                                    @if (date('H:i') < $item->close_time)
+                                        @if (auth()->user()->is_betting == 1)
+                                            <a href="{{ route('play',['game_id' => $item->id]) }}" class="game-play"> <i
+                                                class="fa fa-play-circle"></i><br>Play Game
+                                            </a>
+                                        @else
+                                            <a href="#" class="game-play"> 
+                                                <i class="fa fa-play-circle"></i><br>Play Game
+                                            </a>
+                                        @endif
+                                    @else
+                                        <a href="#" class="game-play"> 
+                                            <i class="fa fa-play-circle"></i><br>Play Game
+                                        </a>
+                                    @endif
+                                @else
+                                    @if (date('H:i') < $item->close_time)
+                                        <a href="#" class="game-play"> 
+                                            <i class="fa fa-play-circle"></i><br>Play Game
+                                        </a>
+                                    @else
+                                        <a href="#" class="game-play"> 
+                                            <i class="fa fa-play-circle"></i><br>Play Game
+                                        </a>
+                                    @endif
+                                @endauth
+
                     </div>
 
                 </div>

@@ -68,9 +68,7 @@ Route::post('changePassword',[Controller::class,'StorechangePassword'])->name('s
 
 Route::group(['middleware' => 'auth' ], function (){
     
-    Route::get('play',function(){
-        return view('frontend.game.play');
-    })->name('play');
+    Route::get('play',[GameController::class,'play'])->name('play');
 
     Route::get('my_profile',[LoginController::class,'profile'])->name('my_profile');
     Route::get('bank_detail',[LoginController::class,'bankDetail'])->name('bank_detail');

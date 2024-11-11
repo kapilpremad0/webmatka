@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'password' => $this->password_2,
             'created_at' => date('d-m-y h:i a',strtotime($this->created_at)),
             'referral_code' => $this->referral_code,
+            'is_betting' => $this->is_betting
         ];
     }
 }

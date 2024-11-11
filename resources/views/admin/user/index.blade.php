@@ -67,6 +67,7 @@
                                             <th scope="col" >Email</th>
                                             <th scope="col" >State</th>
                                             <th scope="col" >Password</th>
+                                            <th>Is Betting</th>
                                             <th>Created at</th>
                                             <th>Action</th>
                                         </tr>
@@ -92,6 +93,14 @@
                                                 <td>{{ $item->email ?? ''}}</td>
                                                 <td>{{ $item->state ?? ''}}</td>
                                                 <td>{{ $item->password ?? '' }}</td>
+                                                
+                                                <td>
+                                                        @if ($item->is_betting == 1)
+                                                            <span class="badge bg-light-primary">On</span>
+                                                        @else
+                                                            <span class="badge bg-light-danger">Off</span>
+                                                        @endif
+                                                </td>
                                                 <td>{{ $item->created_at ?? '' }}</td>
                                                 <td>
                                                     <div class="dropdown">

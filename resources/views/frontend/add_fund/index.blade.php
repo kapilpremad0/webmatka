@@ -4,13 +4,18 @@
     <div class="container">
         <div class="card tb-10">
             <div class="text-center tb-10">
-                <h3>Add Fund via UPI</h3>
-                <span>Add points to your wallet.</span>
+                <h2 style="    font-weight: 900;    font-size: 13px;">For Add Funds Related Query br Call Or Whatsapp</h2>
+                <span>{{ $data['whatsapp_no'] ?? '' }}</span>
+            </div>
+
+            <div class="tb-10">
+                <hr class="devider">
             </div>
 
             <div class="tbmar-20 text-center">
-                <p>Payment add krne ke 5 minute ke andar aapke wallet me points add ho jayenge.<br> Dont worry Wait kriye.
-                    <br>Your money is always safe with OM Games </p>
+                <p>
+                    {{ $data['text'] ?? '' }}
+                </p>
 
             </div>
 
@@ -23,6 +28,9 @@
                 <div class="form-group">
                     <input type="number" id="add_fund_amount" class="form-control" name="amount" value=""
                         min="500" max="50000" placeholder="Enter Amount" autocomplete="off" required>
+                        <div>
+                            <span>Enter minimum amount ₹500</span>
+                        </div>
                 </div>
                 <div class="row bidoptions-list tb-10">
                     <div class="col-3">
@@ -38,15 +46,35 @@
                     </div>
 
                     <div class="col-3">
+                        <a class="addFundamtbox" id="amount_2000" data="2000">
+                            <p><i class="fa fa-inr" aria-hidden="true"></i> 2000</p>
+                        </a>
+                    </div>
+
+                    <div class="col-3">
                         <a class="addFundamtbox" id="amount_5000" data="5000">
                             <p><i class="fa fa-inr" aria-hidden="true"></i> 5000</p>
                         </a>
                     </div>
-                    <div class="col-3">
+
+                    <div class="col-4">
                         <a class="addFundamtbox" id="amount_10000" data="10000">
                             <p><i class="fa fa-inr" aria-hidden="true"></i> 10000</p>
                         </a>
                     </div>
+
+                    <div class="col-4">
+                        <a class="addFundamtbox" id="amount_50000" data="50000">
+                            <p><i class="fa fa-inr" aria-hidden="true"></i> 50000</p>
+                        </a>
+                    </div>
+
+                    <div class="col-4">
+                        <a class="addFundamtbox" id="amount_50000" data="50000">
+                            <p><i class="fa fa-inr" aria-hidden="true"></i> 100000</p>
+                        </a>
+                    </div>
+
                 </div>
 
                 {{-- <div class="form-group">

@@ -39,6 +39,10 @@ class SettingController extends Controller
             'paytm_upi_id' => Setting::where('key',Setting::$paytm_upi_id)->first()->value ?? '',
 
             'whatsaap_no' => Setting::where('key',Setting::$payment_whatsaap_no)->first()->value ?? 0,
+
+
+            'add_fund_text_2_page' => Setting::where('key',Setting::$add_fund_text_2_page)->first()->value ?? '',
+            'add_fund_text_1_page' => Setting::where('key',Setting::$add_fund_text_1_page)->first()->value ?? '',
         ];
 
         $settings = Setting::get();
@@ -52,6 +56,7 @@ class SettingController extends Controller
             'referral_bonus' => $settings->where('key',Setting::$referral_bonus)->first()->value ?? 0,
             'min_withdraw_amount' => $settings->where('key',Setting::$min_withdraw_amount)->first()->value ?? 0,
             'home_banner' => $settings->where('key',Setting::$home_banner)->first()->value ?? '',
+            'globel_setting' => $settings->where('key',Setting::$globel_setting)->first()->value ?? 0,
         ];
         return view('admin.settings.index',compact('game_rates','payments','general_settings'));
     }
@@ -102,6 +107,14 @@ class SettingController extends Controller
             'value' => $request->qr_code_status ?? 0,
         ]);
 
+        Setting::updateOrCreate(['key' => Setting::$add_fund_text_1_page],[
+            'value' => $request->add_fund_text_1_page ?? '',
+        ]);
+
+        Setting::updateOrCreate(['key' => Setting::$add_fund_text_2_page],[
+            'value' => $request->add_fund_text_2_page ?? '',
+        ]);
+
 
 
         if ($request->hasFile('qr_code')) {
@@ -121,6 +134,11 @@ class SettingController extends Controller
 
 
     function storeGeneralSetting(StoreGeneralSettingRequest $request){
+
+        Setting::updateOrCreate(['key' => Setting::$globel_setting],[
+            'value' => $request->globel_setting ?? 0,
+        ]);
+
         Setting::updateOrCreate(['key' => Setting::$referral_bonus],[
             'value' => $request->referral_bonus,
         ]);

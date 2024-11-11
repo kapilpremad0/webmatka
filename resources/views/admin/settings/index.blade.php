@@ -223,6 +223,19 @@
                                                     <span class="error text-danger validation-class" id="home_banner-general_setting_error"></span>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-2 col-12">
+                                                <div class="mb-1">
+                                                    <div class="d-flex flex-column">
+                                                        <label class="form-check-label mb-50" for="customSwitch3">Globel Setting </label>
+                                                        <div class="form-check form-check-primary form-switch">
+                                                            <input type="checkbox" name="globel_setting" value="1" @if ($general_settings['globel_setting'] == 1)
+                                                                checked
+                                                            @endif class="form-check-input" id="customSwitch3" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             
 
                                             <div class="col-12">
@@ -346,6 +359,35 @@
                                                     <label class="form-label" for="first-name-column">Whatsaap Number<span class="error"></span></label>
                                                     
                                                     <input type="number" id="first-name-column" name="whatsaap_no" class="form-control" placeholder="Whatsapp Number"  value="{{ $payments['whatsaap_no'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="whatsaap_no-payment_error"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Add Fund Text (1 Page)<span class="error"></span></label>
+                                                    
+                                                    {{-- <input type="number" id="first-name-column" name="whatsaap_no" class="form-control" placeholder="Whatsapp Number"  value="{{ $payments['whatsaap_no'] ?? '' }}" /> --}}
+
+
+                                                    <textarea name="add_fund_text_1_page" id="" cols="5" rows="5" class="form-control">{!!  $payments['add_fund_text_1_page'] ?? '' !!}</textarea>
+
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="whatsaap_no-payment_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Add Fund Text (2 Page)<span class="error"></span></label>
+                                                    
+                                                    {{-- <input type="number" id="first-name-column" name="whatsaap_no" class="form-control" placeholder="Whatsapp Number"  value="{{ $payments['whatsaap_no'] ?? '' }}" /> --}}
+
+
+                                                    <textarea name="add_fund_text_2_page" id="" cols="5" rows="5" class="form-control">{!!  $payments['add_fund_text_2_page'] ?? '' !!}</textarea>
+
                                                     @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
                                                     <span class="error text-danger validation-class" id="whatsaap_no-payment_error"></span>
                                                 </div>

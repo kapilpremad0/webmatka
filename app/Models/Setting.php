@@ -14,6 +14,12 @@ class Setting extends Model
     static $haruf_winning_amount = 'haruf_winning_amount';
     static $crossing_winning_amount = 'crossing_winning_amount';
 
+    static $globel_setting = 'globel_setting';
+
+
+    static $add_fund_text_2_page = 'add_fund_text_2_page';
+    static $add_fund_text_1_page = 'add_fund_text_1_page';
+
 
     static $payment_whatsaap_no= 'payment_whatsaap_no';
     static $payment_upi_id = 'payment_upi_id';

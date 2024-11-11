@@ -58,7 +58,7 @@
                             <div class="card-body">
                                 <a href="#" class="brand-logo">
                                     {{-- <img src="{{ url('public/frontend/img/footerlogo.png') }}" alt="" width="177"> --}}
-                                    <h2 class="brand-text text-primary ms-1" style="color:#386fb9 !important;">Kalyan Bazar</h2>
+                                    <h2 class="brand-text text-primary ms-1" style="color:#386fb9 !important;">{{ env('APP_NAME') }}</h2>
                                 </a>
                                 
 

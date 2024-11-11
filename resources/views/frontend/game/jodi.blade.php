@@ -17,7 +17,7 @@
 
                     <div class="col-6">
                         <select class="dateGameIDbox" name="game_id">
-                            <option value="91"> MILAN DAY OPEN </option>
+                            <option value="91"> {{ $game->name ?? '' }} OPEN </option>
                         </select>
                     </div>
 

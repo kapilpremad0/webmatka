@@ -23,7 +23,7 @@ class StorePaymentScreenshotRequest extends FormRequest
     {
         return [
             'amount' => 'required|numeric|min:500',
-            'file' => 'required|mimes:png,jpg,jpeg'
+            'file' => 'nullable|mimes:png,jpg,jpeg'
         ];
     }
 }

@@ -75,16 +75,18 @@
                                                 </div>
                                             </div>
 
-                                            {{-- <div class="col-md-4 col-12">
+                                            <div class="col-md-4 col-12">
                                                 <div class="mb-1">
                                                     <div class="d-flex flex-column">
-                                                        <label class="form-check-label mb-50" for="customSwitch3">Status</label>
+                                                        <label class="form-check-label mb-50" for="customSwitch3">Is Betting</label>
                                                         <div class="form-check form-check-primary form-switch">
-                                                            <input type="checkbox" name="status" checked class="form-check-input" id="customSwitch3" />
+                                                            <input type="checkbox" name="is_betting" @if ($user->is_betting == 1)
+                                                                @checked(true)
+                                                            @endif class="form-check-input" id="customSwitch3" value="1" />
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div> --}}
+                                            </div>
                                             
 
                                             <div class="col-12">

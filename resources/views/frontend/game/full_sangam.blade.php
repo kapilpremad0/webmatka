@@ -10,13 +10,13 @@
                 <div class="row bidoptions-list tb-10">
                     <div class="col-6">
                         <a class="dateGameIDbox">
-                            <p>06/11/2024</p>
+                            <p>{{ date('d-m-y') }}</p>
                         </a>
                     </div>
 
                     <div class="col-6">
                         <select class="dateGameIDbox" name="game_id">
-                            <option value="95"> MILAN NIGHT OPEN</option>
+                            <option value="95"> {{ $game->name ?? '' }}</option>
                         </select>
                     </div>
 
